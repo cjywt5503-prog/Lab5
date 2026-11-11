@@ -1,0 +1,127 @@
+{
+  "realm": "biolims",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "clients": [
+    {
+      "clientId": "biolims-api",
+      "enabled": true,
+      "bearerOnly": true,
+      "protocol": "openid-connect"
+    },
+    {
+      "clientId": "biolims-web",
+      "name": "BioLIMS Lab 5",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "protocol": "openid-connect",
+      "redirectUris": [
+        "http://localhost:8080/callback.html"
+      ],
+      "webOrigins": [
+        "http://localhost:8080"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": [
+        "profile",
+        "email",
+        "biolims-audience"
+      ],
+      "optionalClientScopes": [
+        "orders.read",
+        "orders.write",
+        "assays.read",
+        "assays.run",
+        "reports.read"
+      ]
+    }
+  ],
+  "clientScopes": [
+    {
+      "name": "orders.read",
+      "protocol": "openid-connect",
+      "description": "Demo scope orders.read",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
+      "name": "orders.write",
+      "protocol": "openid-connect",
+      "description": "Demo scope orders.write",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
+      "name": "assays.read",
+      "protocol": "openid-connect",
+      "description": "Demo scope assays.read",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
+      "name": "assays.run",
+      "protocol": "openid-connect",
+      "description": "Demo scope assays.run",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
+      "name": "reports.read",
+      "protocol": "openid-connect",
+      "description": "Demo scope reports.read",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true"
+      }
+    },
+    {
+      "name": "biolims-audience",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "biolims-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "student",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Demo",
+      "lastName": "Student",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Student123!",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}
